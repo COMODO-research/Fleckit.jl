@@ -65,5 +65,5 @@ for (j,y) in enumerate(yRange) # Y steps in grid
 end
 
 # Write svg
-fileName = joinpath(fleckitdir(),"assets","spleckes_01.svg")
+fileName = joinpath(fleckitdir(),"assets","speckles_01.svg")
 svg_write(fileName,doc)

@@ -49,7 +49,7 @@ elseif meshType == :Cartesian
     yRange = minY:pointSpacing:maxY
 end
 
-A_speckle = 0.0
+global A_speckle = 0.0
 numSteps = 10
 λ_max = 1.5
 λ_range = range(1,λ_max,numSteps) # collect(λ_range)
@@ -107,4 +107,4 @@ for (q,λ₁) in enumerate(λ_range)
 end
 
 ρ = A_speckle./A  
-
+println("Density is: $ρ")
