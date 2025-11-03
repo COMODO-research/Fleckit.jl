@@ -1,5 +1,4 @@
 using Fleckit
-using XML
 using Random
 Random.seed!(1) # Ensured random numbers are repeatable
 
@@ -42,7 +41,6 @@ for (q,λ₁) in enumerate(λ_range)
     
     for (j,y) in enumerate(yRange) # Y steps in grid
         for (i,x) in enumerate(xRange) # X steps in grid
-            
             n = rand(nSet,1)[1]
             
             if n == 4
@@ -75,4 +73,3 @@ for (q,λ₁) in enumerate(λ_range)
     fileName = fleckitdir()*"/assets/temp"*string(q)*".svg"
     svg_write(fileName,doc)
 end
-

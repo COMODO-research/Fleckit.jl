@@ -33,8 +33,6 @@ xy = range(0+pixelSize/2,1-pixelSize/2,sampleFactor) # x or y coordinates within
 X = [x for x in 0:sampleFactor:(size_grid[2]-1)*sampleFactor, j in 0:sampleFactor:(size_grid[1]-1)*sampleFactor]'
 Y = [y for i in 0:sampleFactor:(size_grid[2]-1)*sampleFactor, y in 0:sampleFactor:(size_grid[1]-1)*sampleFactor]'
 
-
-
 xc = [0,1,1,0]
 yc = [0,0,1,1]
 for ip in 1:sampleFactor # For each cell row

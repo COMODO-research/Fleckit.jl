@@ -1,5 +1,4 @@
 using Fleckit
-using XML
 using Random
 Random.seed!(1) # Ensured random numbers are repeatable
 
@@ -40,6 +39,7 @@ for (j,y) in enumerate(yRange) # Y steps in grid
         n = rand(nSet,1)[1]
         
         if n == 4
+            # Phase shifted so unrotated rectangles allign with x and y axis. 
             T = 0.25*pi .+ range(0,2*pi,n+1) 
         else
             T = range(0,2*pi,n+1) 
@@ -65,5 +65,5 @@ for (j,y) in enumerate(yRange) # Y steps in grid
 end
 
 # Write svg
-fileName = fleckitdir()*"/assets/spleckes.svg"
+fileName = joinpath(fleckitdir(),"assets","spleckes.svg")
 svg_write(fileName,doc)

@@ -1,7 +1,12 @@
 name = "Fleckit"
 uuid = "5221e02f-f4f0-4a70-9dc4-802d9119ebc1"
-authors = ["Kevin-Mattheus-Moerman <kevin.moerman@gmail.com>"]
 version = "0.1.0"
+authors = ["Kevin-Mattheus-Moerman <kevin.moerman@gmail.com>"]
 
 [deps]
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 XML = "72c71f33-b9b6-44de-8c94-c961784809e2"
+
+[compat]
+Printf = "1.11.0"
+XML = "0.3.8"

@@ -1,33 +1,28 @@
 # Call required packages
-
 using XML
-# using GeometryBasics # For point and mesh format
-# using LinearAlgebra # For things like dot and cross products
-# using DataStructures # For unique_dict
-# using Statistics # For: mean etc.
-# using GLMakie # For slidercontrol
-# using Rotations 
-# using Interpolations # E.g. for resampling curves
-# using BSplineKit # E.g. for resampling curves
-# using QuadGK: quadgk # For numerical integration
-# using Distances
-# using DelaunayTriangulation # For triangular meshing
-# using StaticArrays
-# using TetGen # For tetrahedral meshing in tetgenmesh
-
+using Printf 
 
 """
-    comododir()
+    fleckitdir()
+
+Returns Fleckit path
 
 # Description 
-
 This function simply returns the string for the Fleckit path. This is helpful for instance to load items, such as images, from the `assets`` folder. 
 """
 function fleckitdir()
     joinpath(@__DIR__, "..")
 end
 
-function svg_initialize(w,h; fill=nothing)
+"""
+    svg_initialize(w::Tw, h::Th; fill=nothing) where Tw<:Real where Th<:Real
+
+Initialises svg XML
+
+# Description
+This function initialises an svg XML. 
+"""
+function svg_initialize(w::Tw, h::Th; fill=nothing) where Tw<:Real where Th<:Real
     # Define document level
     doc = XML.Document()
 
@@ -51,6 +46,15 @@ function svg_initialize(w,h; fill=nothing)
     return doc,svg_node
 end
 
+
+"""
+    aen(main_node::Node,sub_node_name::String, args...; kwargs...)
+
+Adds xml element node
+
+# Description
+This function's name aen is short for "add element node".
+"""
 function aen(main_node::Node,sub_node_name::String, args...; kwargs...)
     if isnothing(args)
         sub_node = XML.Element(sub_node_name; kwargs...)    
@@ -61,24 +65,47 @@ function aen(main_node::Node,sub_node_name::String, args...; kwargs...)
     return sub_node
 end
 
-function addpolyline(svg_node,P; fill="black")
+"""
+    addpolyline(svg_node, P; fill="black")  
 
+Adds polyline to svg
+
+# Description
+This function ads a polyline entry to the xml type svg specified by `svg_node`. 
+The polygon is defined by the points in the vector `P`. 
+"""
+function addpolyline(svg_node, P; fill="black")
     # Format coordinate/point string
     points_string = ""
     for p in P
-        points_string *= string(p[1])*", "*string(p[2])*" "
+        points_string *= @sprintf("%.6f, %.6f ", p[1], p[2])
     end
 
     # Add polyline to svg
     aen(svg_node,"polyline"; points = points_string[1:end-1], fill=fill)
-
 end
 
+"""
+    svg_write(fileName, doc)
+
+Writes svg to file
+
+# Description
+This function writes the svg image defined by the xml doc `doc` to the file width
+the file name `filename`. 
+"""
 function svg_write(fileName, doc)
     XML.write(fileName, doc)
 end
 
+"""
+    serp(a,b,t; func=:perlin)
 
+Defined Perlin smoothing function
+
+# Description
+This function returns a desired Perlin noise smoothing function
+"""
 function serp(a,b,t; func=:perlin)
     if func == :smoothstep
         q = 3.0*t^3 - 2.0*t^3 # Smoothstep
