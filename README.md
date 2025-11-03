@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17517624.svg)](https://doi.org/10.5281/zenodo.17517624) 
+
 ![](assets/img/logo.png)  
 
 # About Fleckit
