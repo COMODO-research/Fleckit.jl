@@ -70,6 +70,6 @@ for (q,λ₁) in enumerate(λ_range)
     end
 
     # Write svg
-    fileName = fleckitdir()*"/assets/temp"*string(q)*".svg"
+    fileName = joinpath(fleckitdir(), "assets", "temp_$q.svg")
     svg_write(fileName,doc)
 end

@@ -88,10 +88,10 @@ end
 # Visualisation
 fig = Figure(size=(1200,800))
 ax1 = Axis(fig[1, 1], aspect = DataAspect(), title = "Perlin noise",limits=(-sampleFactor,size_image[2]+sampleFactor,-sampleFactor,size_image[1]+sampleFactor) )
-hm = image!(ax1, M',interpolate=false,colormap = Makie.Reverse(:Spectral),colorrange=(-0.5,0.5)) #
+hm = image!(ax1, M',interpolate=false,colormap = :grays, colorrange=(-0.5,0.5)) #
 # arrows!(ax1,reduce(vcat,X), reduce(vcat,Y), reduce(vcat,Ux), reduce(vcat,Uy), arrowsize = 10, lengthscale = sampleFactor/3, color = :black, linewidth=1)
 Colorbar(fig[1, 2], hm)
 fig
 
-fileName = fleckitdir()*"/assets/spleckes_perlin.jpg"
+fileName = joinpath(fleckitdir(), "assets", "spleckes_perlin.jpg")
 save(fileName,fig,px_per_unit = 2)
