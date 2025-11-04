@@ -15,6 +15,12 @@ julia> ]
 # Getting started
 To get started install the package, study the documentation, and test some of the demos provided in the [`examples`](https://github.com/COMODO-research/Fleckit.jl/tree/main/examples) folder. 
 
-Some of the demos include the creation of images for different states of deformation, e.g. [`demo_svg_speckles_rgb_02.jl`](https://github.com/COMODO-research/Fleckit.jl/blob/main/examples/demo_svg_speckles_rgb_02.jl) 
+* Some of the demos include the creation of images for different states of deformation, e.g. [`demo_svg_speckles_rgb_02.jl`](https://github.com/COMODO-research/Fleckit.jl/blob/main/examples/demo_svg_speckles_rgb_02.jl) 
 
 <img src="https://github.com/COMODO-research/Fleckit.jl/blob/main/assets/img/speckle_deform.gif" alt="Speckle types" width="50%"/>
+
+* Demo [`demo_checkboardImage`](https://github.com/COMODO-research/Fleckit.jl/tree/main/examples/demo_checkerboardImage.jl) shows the creation of a checkerboard image which is useful for camera calibration purposes. 
+
+<img src="https://github.com/COMODO-research/Fleckit.jl/blob/main/assets/img/checkerboard_A4_7x10.jpg" alt="Speckle types" width="50%"/>
+
+

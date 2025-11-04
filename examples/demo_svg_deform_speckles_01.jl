@@ -64,7 +64,7 @@ for (q,λ₁) in enumerate(λ_range)
             P = [ R*[rx*cos(t),ry*sin(t)] for t in T]
             P = [ [cx + λ₂*p[1],cy + λ₁*p[2]] for p in P]
             
-            # Add polyline to svg
+            # Add polyline to svg            
             addpolyline(svg_node,P)
         end
     end

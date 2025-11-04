@@ -119,3 +119,67 @@ function serp(a,b,t; func=:perlin)
     end
     return (1.0-q)*a + q*b
 end
+
+"""
+    checkerboardImage(fileName, gridSize, squareSize; paperSize=:A4, color1="black", color2="white", colorBackground="white")
+
+Creates checkerboard svg
+
+# Description
+This function creates an svg file for a checkboard. The inputs include: 
+* `fileName`, which defines the svg file name (should include the file extension)
+* `gridSize`, the number of cells in the widht/heigh direction for the checkboard,
+ e.g. the default is [7, 10]. 
+* `squareSize`, sets the width of the checkboard cells. 
+Next the following optional keyword arguments are supported: 
+* `paperSize`, the default is `:A4`
+* `color1`, this is the color of tile type 1, the default is "black", all svg 
+color strings are supported. 
+* `color2`, this is the color of tile type 2, the default is "white", all svg 
+color strings are supported. 
+* `colorBackground`, this is the color of the background, the default is 
+"white", all svg color strings are supported. 
+"""
+function checkerboardImage(fileName::String, gridSize=[7,10], squareSize=20.0; paperSize=:A4, color1="black", color2="white", colorBackground="white")
+    # Define page canvas parameters 
+    if paperSize == :A3
+        wx = 297 # Width 
+        wy = 420 # Height
+    elseif paperSize == :A4 
+        wx = 210 # Width  
+        wy = 297 # Height   
+    end
+    
+    checkBoardSize = squareSize .* gridSize
+    if checkBoardSize[1]>wx || checkBoardSize[2]>wy
+        throw(ArgumentError("Grid does not fit paper size"))
+    end
+
+    # Initialise XML
+    doc,svg_node = svg_initialize(wx, wy; fill=colorBackground)
+
+    P_square = squareSize.*[[-0.5,  -0.5], 
+                            [ 0.5,  -0.5], 
+                            [ 0.5,   0.5], 
+                            [-0.5,   0.5]]
+   
+    xs = (wx - checkBoardSize[1])/2.0
+    ys = (wy - checkBoardSize[2])/2.0
+    yc = ys + squareSize/2.0
+    for i_y in 1:gridSize[2]        
+        xc = xs + squareSize/2.0
+        for i_x in 1:gridSize[1]
+            P = [p+[xc, yc] for p in P_square]                                                
+            if iseven(i_y) == iseven(i_x)           
+               addpolyline(svg_node,P; fill=color1) # Add polyline to svg
+            elseif color2 != fill
+                addpolyline(svg_node,P; fill=color2) # Add polyline to svg
+            end
+            xc += squareSize
+        end
+        yc += squareSize
+    end
+
+    # Write svg    
+    svg_write(fileName,doc)
+end

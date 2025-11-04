@@ -9,7 +9,6 @@ export Printf
 
 include("functions.jl")
 
-
-export fleckitdir, svg_initialize, aen, addpolyline, svg_write, serp
+export fleckitdir, svg_initialize, aen, addpolyline, svg_write, serp, checkerboardImage
 
 end # module Fleckit
