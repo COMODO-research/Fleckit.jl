@@ -6,7 +6,8 @@
 Julia code to generate speckled images for digital image correlation studies. The image below shows the speckle types currently supported. Image A shows Perlin noise based speckling, which is a pixelated image containing continuous gray scales. Image B, C, and D show speckles created as polygons in an `.svg` image description. 
 
 <img src="https://github.com/COMODO-research/Fleckit.jl/blob/main/assets/img/speckle_types.jpg" alt="Speckle types" width="50%"/>  
-# Installation
+# Installation 
+
 ```julia
 julia> ]
 (@v1.xx) pkg> add https://github.com/COMODO-research/Fleckit.jl.git
